@@ -13,9 +13,6 @@ def index():
     file_path = Path(__file__).resolve().parent / f"{ticker}_transformed.csv"
     if file_path.exists():
         data = pd.read_csv(file_path, index_col=0)
-        if data.index[:3].tolist() == ["Price", "Ticker", "Date"]:
-            data = pd.read_csv(file_path, index_col=0, header=[0, 1, 2])
-            data.columns = data.columns.get_level_values(0)
         table_html = data.tail(10).to_html(
             classes="stock-table", header=True, index=True
         )

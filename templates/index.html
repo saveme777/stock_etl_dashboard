@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Биржевой ETL Дашборд</title>
+    <title>Stock Market ETL Dashboard</title>
     <style>
         :root {
             color-scheme: dark;
@@ -108,11 +108,11 @@
 </head>
 <body>
 
-    <h1>📈 Мой биржевой ETL-пайплайн</h1>
-    <p>Данные по акциям Apple, обработанные с помощью Python и выведенные через кастомный HTML/CSS интерфейс.</p>
+    <h1>📈 Stock Market ETL Dashboard Pipeline</h1>
+    <p>Stock data processed using Python and displayed through a custom HTML/CSS interface.</p>
 
     <form method="post">
-        <label for="ticker">Input stock name (e.g. AAPL, AMD, TSLA):</label>
+        <label for="ticker">Input stock name (e.g. AAPL, NVDA, TSLA):</label>
         <input
             type="text"
             id="ticker"
@@ -122,14 +122,14 @@
             maxlength="20"
             required
         >
-        <button type="submit">Получить котировки</button>
+        <button type="submit">Get quotes</button>
     </form>
 
     {% if error %}
         <p role="alert" style="color: red;">{{ error }}</p>
     {% endif %}
 
-    <h2>Последние котировки и метрики: {{ ticker }}</h2>
+    <h2>Last quotes and metrics: {{ ticker }}</h2>
     
     <div>
         {{ table | safe }}
