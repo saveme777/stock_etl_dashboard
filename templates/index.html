@@ -111,18 +111,9 @@
     <h1>📈 Stock Market ETL Dashboard Pipeline</h1>
     <p>Stock data processed using Python and displayed through a custom HTML/CSS interface.</p>
 
-    <form method="post">
-        <label for="ticker">Input stock name (e.g. AAPL, NVDA, TSLA):</label>
-        <input
-            type="text"
-            id="ticker"
-            name="ticker"
-            value="{{ ticker }}"
-            placeholder="AAPL"
-            maxlength="20"
-            required
-        >
-        <button type="submit">Get quotes</button>
+    <form method="POST" action="/">
+        <input type="text" name="ticker" placeholder="Enter stock name: (e.g. NVDA)" value="{{ ticker }}">
+        <button type="submit">Get data</button>
     </form>
 
     {% if error %}
@@ -130,10 +121,12 @@
     {% endif %}
 
     <h2>Last quotes and metrics: {{ ticker }}</h2>
-    
-    <div>
-        {{ table | safe }}
-    </div>
+
+    {% if table %}
+        <div class="table-container">
+            {{ table | safe }}
+        </div>
+    {% endif %}
 
 </body>
 </html>
