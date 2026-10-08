@@ -2,9 +2,13 @@ import re
 import yfinance as yf
 import pandas as pd
 
-
 def extract_and_load(ticker: str) -> pd.DataFrame:
     ticker = ticker.strip().upper()
+
+    suffixes = ('DE', 'L', 'PA', 'AS', 'MI', 'MC', 'SW', 'ST', 'HK', 'SS', 'SZ', 'T', 'KS', 'TW', 'AX', 'NS', 'TO', 'V', 'SA', 'MX')
+    if ticker.endswith(suffixes) and not ticker.endswith(tuple(f".{s}" for s in suffixes)):
+        ticker = f"{ticker[:-2]}.{ticker[-2:]}"
+
     if not re.fullmatch(r"[A-Z0-9.^=-]{1,20}", ticker):
         raise ValueError("Enter a valid ticker using letters, numbers, and symbols like '.', '^', '=', '-'.")
 
