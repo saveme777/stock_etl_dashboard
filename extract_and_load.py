@@ -2,7 +2,7 @@ import re
 import yfinance as yf
 import pandas as pd
 
-def extract_and_load(ticker: str) -> pd.DataFrame:
+def extract_and_load(ticker: str) -> tuple[pd.DataFrame, str]:
     ticker = ticker.strip().upper()
 
     suffixes = ('DE', 'L', 'PA', 'AS', 'MI', 'MC', 'SW', 'ST', 'HK', 'SS', 'SZ', 'T', 'KS', 'TW', 'AX', 'NS', 'TO', 'V', 'SA', 'MX')
@@ -26,7 +26,12 @@ def extract_and_load(ticker: str) -> pd.DataFrame:
     table["SMA"] = table["Close"].rolling(window=5).mean()
     table["Daily_Return"] = table["Close"].pct_change() * 100
 
-    return table
+    stock = yf.Ticker(ticker)
+
+    info = stock.info
+    company_name = info.get('longName') or info.get('shortName') or ticker
+
+    return table, company_name
 
 
 if __name__ == "__main__":
@@ -34,4 +39,6 @@ if __name__ == "__main__":
         "Input the stock name (e.g., AAPL, NVDA, TSLA): "
     ).strip().upper()
     ticker = user_input_ticker or "AAPL"
-    print(extract_and_load(ticker).tail(10))
+    data, company_name = extract_and_load(ticker)
+    print(company_name)
+    print(data.tail(10))

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency Tables | Market Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="site-nav" aria-label="Main navigation">
+        <a class="brand" href="{{ url_for('index') }}">Market Dashboard</a>
+        <div class="nav-links">
+            <a class="nav-link" href="{{ url_for('index') }}">Start</a>
+            <a class="nav-link active" href="{{ url_for('crypto') }}" aria-current="page">Crypto tables</a>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Cryptocurrency reference tables</h1>
+        <p class="page-intro">A fixed overview of selected digital assets. These tables describe each asset and do not show live prices or market data.</p>
+
+        <section class="crypto-section" aria-labelledby="network-assets-heading">
+            <h2 id="network-assets-heading">Network currencies</h2>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Symbol</th>
+                            <th scope="col">Primary network</th>
+                            <th scope="col">Typical role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Bitcoin</td><td>BTC</td><td>Bitcoin</td><td>Peer-to-peer digital currency</td></tr>
+                        <tr><td>Ethereum</td><td>ETH</td><td>Ethereum</td><td>Network fees and decentralized applications</td></tr>
+                        <tr><td>Solana</td><td>SOL</td><td>Solana</td><td>Network fees and decentralized applications</td></tr>
+                        <tr><td>XRP</td><td>XRP</td><td>XRP Ledger</td><td>Payments and value transfer</td></tr>
+                        <tr><td>Cardano</td><td>ADA</td><td>Cardano</td><td>Network fees and staking</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="crypto-section" aria-labelledby="stablecoins-heading">
+            <h2 id="stablecoins-heading">Stablecoins</h2>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Asset</th>
+                            <th scope="col">Symbol</th>
+                            <th scope="col">Design</th>
+                            <th scope="col">Typical role</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Tether</td><td>USDT</td><td>Fiat-referenced token</td><td>Trading and value transfer</td></tr>
+                        <tr><td>USD Coin</td><td>USDC</td><td>Fiat-referenced token</td><td>Payments and on-chain settlement</td></tr>
+                        <tr><td>Dai</td><td>DAI</td><td>Crypto-collateralized token</td><td>Decentralized finance</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

@@ -9,18 +9,30 @@ app = Flask(__name__)
 def index():
     table_html = None  
     ticker = ""
+    company_name = ""
 
     if request.method == 'POST':
         ticker = request.form.get('ticker', '').strip()
         
         if ticker:
             try:
-                data = extract_and_load(ticker)
+                data, company_name = extract_and_load(ticker)
                 table_html = data.tail(10).to_html(classes="stock-table", header=True, index=True)
             except ValueError as err:
                 table_html = f"<p style='color: red;'>{err}</p>"
 
-    return render_template("index.html", table=table_html, ticker=ticker)
+    return render_template(
+        "index.html",
+        table=table_html,
+        ticker=ticker,
+        company_name=company_name,
+    )
+
+
+@app.route('/crypto')
+def crypto():
+    return render_template("crypto.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
